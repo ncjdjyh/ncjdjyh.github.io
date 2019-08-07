@@ -207,11 +207,17 @@
 	
 	   <article class="post post">
     <header class="post-header">
-        <h2 class="post-title"><a href="https://ncjdjyh.github.io/2019/08/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">我的第一个编程语言</a></h2>
+        <h2 class="post-title"><a href="https://ncjdjyh.github.io/2018/10/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">我的第一个编程语言</a></h2>
     </header>
     <section class="post-excerpt">
         
-            <p> <a class="read-more" href="https://ncjdjyh.github.io/2019/08/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">&raquo;</a></p>
+            <p>开篇 很久以前就想拥有一个自己的编程语言, 当看到计算机精确无误的将一行行代码翻译为正确的结果时, 我不禁感叹它的智慧, 但聪明的其实不是计算机, 计算机只是一个取值执行的部件, 是程序语言的设计者赋予了它这样的魔力, 能够根据我们的需要完成特定的事情, 这才是智慧的体现.
+实现一个解释器往往是程序语言设计的第一步, 而跨出了这一步往往会修正自己作为程序员的看法, 现在你将自己看成了语言的设计师, 而不仅仅是语言的使用者.
+YHScheme 虽然只是一个很简单的玩具语言, 但是也涵盖程序中最基本的构造(算数, 变量, 绑定, 调用, 递归)
+ 可以看到 YHScheme 解释的主要作用只是将源码转化为了java编译器能够识别的java代码而已，后面的事情就交给 JVM 来完成了。
+表达式 和其他lisp方言一样, YHScheme 采用前缀表达式
+;这是常见的中缀表达式 (1 + 2 + 3) ;这是前缀表达式 (+ (+ 1 2) 3) ;这是后缀表达式 ((1 2 +) 3 +) 更多表达式的知识可以参考这里
+YHScheme 语法 ;算数 &gt; &gt; (+ 2 3 4) &gt; &gt; 9 &gt; &gt; (* 2 (+ 2 2)) &gt; &gt; 8 ;逻辑 &gt; &gt; (&gt; 1 2) &gt; &gt; false &gt; &gt; (= 1 1) &gt; &gt; true ;高阶过程 &gt; &gt; (def (square x) (* x x)) &gt; &gt; ok &gt; &gt; (def (sum-of-square f x y) (+ (f x) (f y))) &gt; &gt; ok &gt; &gt; (sum-of-square square 2 3) &gt; &gt; 13 ;递归 &gt; &gt; (def (fact n) (if (= n 1) 1 (* n (f (- n 1))))) &gt; &gt; ok &gt; &gt; (fact 5) &gt; &gt; 120 ;匿名过程 &gt; &gt; (((lambda(x) (lambda(y) (+ x y)))2)3)  词法分析 词法分析是将字符序列转换为单词（Token）序列的过程, 前面说过 YHScheme 采用了前缀表达式, 那么采用像这样的前缀表达式有什么好处呢? <a class="read-more" href="https://ncjdjyh.github.io/2018/10/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">&raquo;</a></p>
         
     </section>
     <footer class="post-meta">
@@ -235,8 +241,8 @@
                 <a href="https://ncjdjyh.github.io//tags/series/">#series</a>,
             
         
-        <time class="post-date" datetime="2019-08-05T16:43:01&#43;08:00">
-            5 Aug 2019
+        <time class="post-date" datetime="2018-10-05T16:43:01&#43;08:00">
+            5 Oct 2018
         </time>
     </footer>
 </article>

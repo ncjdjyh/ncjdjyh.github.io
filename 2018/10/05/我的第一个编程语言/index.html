@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    
+    
+        <meta name="twitter:card" content="summary"/>
+    
+
+
+
+<meta name="twitter:title" content="我的第一个编程语言"/>
+<meta name="twitter:description" content=""/>
+<meta name="twitter:site" content="@"/>
+
+
+
+  	<meta property="og:title" content="我的第一个编程语言 &middot; 元昊的博客" />
+  	<meta property="og:site_name" content="元昊的博客" />
+  	<meta property="og:url" content="https://ncjdjyh.github.io/2018/10/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" />
+
+    
+        
+            <meta property="og:image" content="/images/1.jpg"/>
+        
+    
+
+    
+    <meta property="og:description" content="" />
+  	<meta property="og:type" content="article" />
+    <meta property="article:published_time" content="2018-10-05T16:43:01&#43;08:00" />
+
+    
+    <meta property="article:tag" content="series" />
+    
+    
+
+    <title>我的第一个编程语言 &middot; 元昊的博客</title>
+
+    
+    <meta name="description" content="开篇 很久以前就想拥有一个自己的编程语言, 当看到计算机精确无误的将一行行代码翻译为正确的结果时, 我不禁感叹它的智慧, 但聪明的其实不是计算机, 计算机只是一个取值执行的部件, 是程序语言的设计者赋予了它这样的魔力, 能够根据我们的需要完成特定的事情, 这才是智慧的体现.
+实现一个解释器往往是程序语言设计的第一步, " />
+    
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="https://ncjdjyh.github.io/images/favicon.ico">
+	  <link rel="apple-touch-icon" href="https://ncjdjyh.github.io/images/apple-touch-icon.png" />
+
+    <link rel="stylesheet" type="text/css" href="https://ncjdjyh.github.io/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="https://ncjdjyh.github.io/css/nav.css" />
+
+    
+
+    
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/atom-one-light.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+        
+        <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+      
+          <link href="https://ncjdjyh.github.io/index.xml" rel="alternate" type="application/rss+xml" title="元昊的博客" />
+      
+      
+    
+    <meta name="generator" content="Hugo 0.56.3" />
+
+    <link rel="canonical" href="https://ncjdjyh.github.io/2018/10/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" />
+
+    
+      
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name":  null ,
+        "logo": "https://ncjdjyh.github.io/images/check-circle.png"
+    },
+    "author": {
+        "@type": "Person",
+        "name":  null ,
+        
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://ncjdjyh.github.io/images/check-circle.png",
+            "width": 250,
+            "height": 250
+        }, 
+        
+        "url":  null ,
+        "sameAs": [
+            
+            
+             
+             
+             
+             
+             
+            
+        ],
+        "description": "Every man dies, not every man really lives."
+        
+    },
+    "headline": "我的第一个编程语言",
+    "name": "我的第一个编程语言",
+    "wordCount":  480 ,
+    "timeRequired": "PT3M",
+    "inLanguage": {
+      "@type": "Language",
+      "alternateName": "en"
+    },
+    "url": "https://ncjdjyh.github.io/2018/10/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/",
+    "datePublished": "2018-10-05T16:43Z",
+    "dateModified": "2018-10-05T16:43Z",
+    
+    "keywords": "series",
+    "description": "",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://ncjdjyh.github.io/2018/10/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"
+    }
+}
+    </script>
+    
+
+
+    
+
+    
+
+    
+</head>
+<body class="nav-closed">
+
+  <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        
+        
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://ncjdjyh.github.io/">首页</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://ncjdjyh.github.io/tags/daily">日常</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://ncjdjyh.github.io/tags/series">重新造轮子</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://ncjdjyh.github.io/tags/music">音乐</a>
+            </li>
+        
+            
+            <li class="nav-opened" role="presentation">
+            	<a href="https://ncjdjyh.github.io/about">关于我</a>
+            </li>
+        
+        
+    </ul>
+
+    
+    <a class="subscribe-button icon-feed" href="https://ncjdjyh.github.io/index.xml">Subscribe</a>
+    
+</div>
+<span class="nav-cover"></span>
+
+
+ <div class="site-wrapper">
+
+
+
+<header class="main-header post-head no-cover">
+  <nav class="main-nav clearfix">
+
+
+  
+      <a class="blog-logo" href="https://ncjdjyh.github.io/"><img src="https://ncjdjyh.github.io/images/check-circle.png" alt="Home" /></a>
+  
+  
+      <a class="menu-button" href="#"><span class="burger">&#9776;</span><span class="word">Menu</span></a>
+  
+  </nav>
+</header>
+
+
+
+<main class="content" role="main">
+
+
+
+
+  <article class="post post">
+
+    <header class="post-header">
+        <h1 class="post-title">我的第一个编程语言</h1>
+        <small></small>
+
+        <section class="post-meta">
+        
+          <time class="post-date" datetime="2018-10-05T16:43:01&#43;08:00">
+            Oct 5, 2018
+          </time>
+        
+         
+          <span class="post-tag small"><a href="https://ncjdjyh.github.io//tags/series/">#series</a></span>
+         
+        </section>
+    </header>
+
+    <section class="post-content">
+      
+
+<h2 id="开篇">开篇</h2>
+
+<p>很久以前就想拥有一个自己的编程语言, 当看到计算机精确无误的将一行行代码翻译为正确的结果时, 我不禁感叹它的智慧, 但聪明的其实不是计算机, 计算机只是一个取值执行的部件, 是程序语言的设计者赋予了它这样的魔力, 能够根据我们的需要完成特定的事情, 这才是智慧的体现.</p>
+
+<p>实现一个解释器往往是程序语言设计的第一步, 而跨出了这一步往往会修正自己作为程序员的看法, 现在你将自己看成了语言的设计师, 而不仅仅是语言的使用者.</p>
+
+<p>YHScheme 虽然只是一个很简单的玩具语言, 但是也涵盖程序中最基本的构造(算数, 变量, 绑定, 调用, 递归)</p>
+
+<p><a href="https://imgchr.com/i/EW40u6"><img src="https://s2.ax1x.com/2019/05/11/EW40u6.png" alt="EW40u6.png" /></a>
+可以看到 YHScheme 解释的主要作用只是将源码转化为了java编译器能够识别的java代码而已，后面的事情就交给 JVM 来完成了。</p>
+
+<p>表达式
+和其他lisp方言一样, YHScheme 采用前缀表达式</p>
+
+<p>;这是常见的中缀表达式
+(1 + 2 + 3)
+;这是前缀表达式
+(+ (+ 1 2) 3)
+;这是后缀表达式
+ ((1 2 +) 3 +)
+更多表达式的知识可以参考这里</p>
+
+<h3 id="yhscheme-语法">YHScheme 语法</h3>
+
+<pre><code>;算数
+
+&gt; &gt; (+ 2 3 4)
+&gt; &gt; 9
+&gt; &gt; (* 2 (+ 2 2))
+&gt; &gt; 8
+
+;逻辑
+
+&gt; &gt; (&gt; 1 2)
+&gt; &gt; false
+&gt; &gt; (= 1 1)
+&gt; &gt; true
+
+;高阶过程
+
+&gt; &gt; (def (square x) (* x x))
+&gt; &gt; ok
+&gt; &gt; (def (sum-of-square f x y) (+ (f x) (f y)))
+&gt; &gt; ok
+&gt; &gt; (sum-of-square square 2 3)
+&gt; &gt; 13
+
+;递归
+
+&gt; &gt; (def (fact n) (if (= n 1) 1 (* n (f (- n 1)))))
+&gt; &gt; ok
+&gt; &gt; (fact 5)
+&gt; &gt; 120
+
+;匿名过程
+
+&gt; &gt; (((lambda(x) (lambda(y) (+ x y)))2)3)
+</code></pre>
+
+<h3 id="词法分析">词法分析</h3>
+
+<p>词法分析是将字符序列转换为单词（Token）序列的过程, 前面说过 YHScheme 采用了前缀表达式, 那么采用像这样的前缀表达式有什么好处呢? 这种方式会使得原本复杂的词法分析和语法分析变得非常的简单.</p>
+
+<pre><code>src = src.replaceAll(&quot;\\(&quot;, &quot; ( &quot;).replaceAll(&quot;\\)&quot;, &quot; ) &quot;);
+String[] tokens = src.trim().split(&quot;\\s+&quot;);
+</code></pre>
+
+<p>这样就完成了 YHScheme 的词法分析</p>
+
+<h3 id="语法分析">语法分析</h3>
+
+<p>语法分析的任务是在词法分析的基础上将单词序列组合成各类语法短语, 最后生成一个 AST(抽象语法树). 例如：(if (&gt; 2 1) 1 2)的语法树如下</p>
+
+<p><img src="https://s2.ax1x.com/2019/05/11/EW5zQI.png" alt="EW5zQI.png" /></p>
+
+<p>所以要做的就是根据获取的token生成这样一颗树就行了 实现如下。</p>
+
+<pre><code>public static Expression parse(String[] tokens) {
+    Expression root = new Expression(null, &quot;root&quot;);
+    Expression parent = null;
+    for (String t: tokens) {
+        Expression node = new Expression(parent, t);
+        if (parent == null) {
+            parent = node;
+            root = parent;
+        } else {
+            parent.addChild(node);
+        }
+        switch (t) {
+            case &quot;(&quot; {
+                parent = node;
+                break;
+            }
+            case &quot;)&quot; {
+                parent = parent.getParent();
+                break;
+            }
+        }
+    }
+    return root;
+}
+
+public class Expression {
+    private Expression parent;
+    private List&lt;Expression&gt; children;
+    private String value;
+    // ....
+}
+</code></pre>
+
+<p>可以看到，每个节点是一个expression对象，我们遍历tokens。</p>
+
+<p>当遇到”(“时创建出新的父节点
+当遇到”)”时返回到父节点
+解释过程
+YHScheme 采用 <a href="https://book.douban.com/subject/1148282/">sicp4.1</a> 上给出的模型进行求值。</p>
+
+<p><a href="https://imgchr.com/i/eIEwff"><img src="https://s2.ax1x.com/2019/08/07/eIEwff.png" alt="eIEwff.png" /></a></p>
+
+<p>简单来说就是eval理解语法树的含义，然后交给apply，apply根据表达式和环境给出对应的处理。</p>
+
+<pre><code>public static Object eval(Expression exp, Environment env) {
+        if (isSelfEval(exp)) {
+        return Apply.evalSelf(exp, env);
+        } else if (isKeywordEval(exp)) {
+        return Apply.keywordEval(exp, env);
+        } else if (isEssentialEval(exp) ){
+        return Apply.essentialEval(exp, env);
+        } else {
+        return Apply.evalProcedure(exp, env);
+    }
+}
+</code></pre>
+
+<p>而环境被看成是一系列键值对的绑定，用以保存变量名和对应值。</p>
+
+<pre><code>public class Environment implements Cloneable     {
+    private Environment parentEnv;
+    private HashMap&lt;String, Object&gt; table;
+}
+</code></pre>
+
+<h3 id="作用域">作用域</h3>
+
+<p>作用域也是程序语言设计的重要组成部分，不同的设计常常会使语言的使用变得完全不同。
+例如这一段js代码</p>
+
+<pre><code>for(var i = 0 ;i&lt;10; i++) {}
+console.log(i)
+</code></pre>
+
+<p>熟悉C，Java等语言的人直觉上会觉得这样的写法是错误的，然而实际上这段语句会输出10，原因就是在早期的（ES5及其以前) JS 作用域设计中只有全局作用域和函数作用域，没有块作用域的说法，所以在这个例子里，i将会被看成一个全局变量，这样的做法是很违反人类直觉的，因为循环中的变量通常都被当成是访问具体对象的一个临时索引值。我们不希望在后续的代码中莫名其妙的就多了由于循环而产生的全局变量值。解决这个问题的方法是将循环做成一个函数的闭包。</p>
+
+<pre><code>(function() {
+    for(var i = 0; i &lt; 10; i++) {}
+})()
+console.log(i)
+；error i undefine
+</code></pre>
+
+<p>这样虽然是解决了问题，但是看起来会比较丑陋。而且这种将循环和函数掺杂在一起，本质上还是通过函数的调用来实现的。所以在es6以后的标准中引入了let取代以前的var来引入块作用域。</p>
+
+<pre><code>for(let i = 0 ;i&lt;10; i++) {}
+console.log(i)
+; error i undefine
+</code></pre>
+
+<p>YHScheme采用了静态作用域(Lexical scope)，也就是求值环境会在声明时指定。常见的作用域类型还有动态作用域(dynamic scope)。更多有关作用域的知识可以参考这里,王垠大神也在他的博客中讨论了这两种作用域的区别。
+要实现静态作用域，需要过程在定义时保存当前的环境，当它求值的时候再取出这个环境进行求值。</p>
+
+<pre><code>public class Procedure {
+    private List&lt;String&gt; params;
+    private List&lt;Expression&gt; body;
+    private Environment currentEnv;
+    //省略getter setter
+    //将过程体与此时的环境打包
+    public Procedure(List&lt;String&gt; params, List&lt;Expression&gt; body, Environment env) {
+        this.params = params;
+        this.body = body;
+        this.currentEnv = env;
+    }
+}
+</code></pre>
+
+<pre><code>/*过程求值*/
+public static Object evalProcedure(Expression exp, Environment env) {
+    List&lt;Object&gt; realParams = getRealParams(exp, env);
+    Procedure func = getProc(exp, env);
+    Environment currentEnv = func.getCurrentEnv();
+    //求值过程时创建新环境 就是当前过程闭包的环境 并且指向父环境
+    Environment funcEnv = new Environment(currentEnv);
+    //扩充求值环境
+    funcEnv.extendEnvironment(func.getParams(), realParams);
+    return EvalUtil.evalAllAndReturnLastResult(func.getBody(), funcEnv);
+}
+</code></pre>
+
+<h3 id="总结">总结</h3>
+
+<h5 id="不足">不足</h5>
+
+<ul>
+<li>缺少一系列数据类型，Float String…</li>
+<li>作为scheme的方言缺少很多scheme的内置过程(cons list eq?…)。
+没有io，更不要说多线程，网络通信。</li>
+<li>执行效率十分低下。</li>
+
+<li><p>为了简单起见，没有对不合法输入的检验，如果使用者输入不合法的数据将很容易崩溃。
+设计方面</p></li>
+
+<li><p>每个求值过程都需要传递expression和environment这两个相同参数，还不知道如何优化。</p></li>
+</ul>
+
+<h5 id="收获">收获</h5>
+
+<ul>
+<li><p>动手，早就有自己做一个解释器的想法，一直觉得自己的水平不够，不敢尝试，但是真正写起来才发现并不是自己想的那么困难。(当然要多亏了网上丰富的资源和一群乐于分享的人们，特别是我参考资料中给出的那些，对你们表示衷心的感谢)</p></li>
+
+<li><p>YHScheme虽然只是一个有着这么多缺陷的玩具。但亲自实现了一个自己的语言依然令我无比的开心。</p>
+
+<h3 id="参考">参考</h3>
+
+<p><a href="https://www.yinwang.org/blog-cn/2012/08/01/interpreter">王垠 怎样写一个解释器</a></p></li>
+</ul>
+
+<p><a href="https://www.cnblogs.com/figure9/p/3620079.html">90分钟实现一门编程语言——极简解释器教程</a></p>
+
+<p><a href="https://github.com/jiacai2050/JCScheme">刘家财 JCScheme</a></p>
+
+<p><a href="https://github.com/ncjdjyh/yh-scheme">源码地址</a></p>
+
+    </section>
+
+
+  <footer class="post-footer">
+
+
+    
+
+
+
+
+
+
+
+
+<figure class="author-image">
+    <a class="img" href="https://ncjdjyh.github.io/" style="background-image: url(/images/check-circle.png)"><span class="hidden">ncjdjyh's Picture</span></a>
+</figure>
+
+
+<section class="author">
+  <h4><a href="https://ncjdjyh.github.io/">ncjdjyh</a></h4>
+  
+  <p>Every man dies, not every man really lives.</p>
+  
+  <div class="author-meta">
+    <span class="author-location icon-location">Nanjin, China</span>
+    
+  </div>
+</section>
+
+
+
+
+    
+<section class="share">
+  <h4>Share this post</h4>
+  <a class="icon-twitter" style="font-size: 1.4em" href="https://twitter.com/share?text=%e6%88%91%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80&nbsp;-&nbsp;%e5%85%83%e6%98%8a%e7%9a%84%e5%8d%9a%e5%ae%a2&amp;url=https%3a%2f%2fncjdjyh.github.io%2f2018%2f10%2f05%2f%25E6%2588%2591%25E7%259A%2584%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E7%25BC%2596%25E7%25A8%258B%25E8%25AF%25AD%25E8%25A8%2580%2f"
+      onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+      <span class="hidden">Twitter</span>
+  </a>
+  <a class="icon-facebook" style="font-size: 1.4em" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fncjdjyh.github.io%2f2018%2f10%2f05%2f%25E6%2588%2591%25E7%259A%2584%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E7%25BC%2596%25E7%25A8%258B%25E8%25AF%25AD%25E8%25A8%2580%2f"
+      onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+      <span class="hidden">Facebook</span>
+  </a>
+  <a class="icon-pinterest" style="font-size: 1.4em" href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fncjdjyh.github.io%2f2018%2f10%2f05%2f%25E6%2588%2591%25E7%259A%2584%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E7%25BC%2596%25E7%25A8%258B%25E8%25AF%25AD%25E8%25A8%2580%2f&amp;description=%e6%88%91%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%e7%bc%96%e7%a8%8b%e8%af%ad%e8%a8%80"
+      onclick="window.open(this.href, 'pinterest-share','width=580,height=296');return false;">
+      <span class="hidden">Pinterest</span>
+  </a>
+  <a class="icon-google-plus" style="font-size: 1.4em" href="https://plus.google.com/share?url=https%3a%2f%2fncjdjyh.github.io%2f2018%2f10%2f05%2f%25E6%2588%2591%25E7%259A%2584%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E7%25BC%2596%25E7%25A8%258B%25E8%25AF%25AD%25E8%25A8%2580%2f"
+     onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+      <span class="hidden">Google+</span>
+  </a>
+</section>
+
+
+
+    
+
+<div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "https:\/\/ncjdjyh.github.io\/2018\/10\/05\/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80\/";  
+this.page.identifier = "https:\/\/ncjdjyh.github.io\/2018\/10\/05\/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80\/"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://ncjdjyh.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+
+
+  </footer>
+</article>
+
+</main>
+
+
+  <aside class="read-next">
+  
+  
+</aside>
+
+
+
+    <footer class="site-footer clearfix">
+        <section class="copyright"><a href="">元昊的博客</a> All rights reserved - 2019</section>
+        
+        <section class="poweredby">Proudly generated by <a class="icon-hugo" href="http://gohugo.io">HUGO</a>, with <a class="icon-theme" href="https://github.com/vjeantet/hugo-theme-casper">Casper</a> theme</section>
+        
+    </footer>
+    </div>
+    <script type="text/javascript" src="https://ncjdjyh.github.io/js/jquery.js"></script>
+    <script type="text/javascript" src="https://ncjdjyh.github.io/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://ncjdjyh.github.io/js/index.js"></script>
+    
+</body>
+</html>
+

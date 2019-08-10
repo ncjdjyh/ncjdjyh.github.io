@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>元昊的博客</title>
-    <link>https://ncjdjyh.github.io/</link>
-    <description>Recent content on 元昊的博客</description>
+    <title>daily on 元昊的博客</title>
+    <link>https://ncjdjyh.github.io/tags/daily/</link>
+    <description>Recent content in daily on 元昊的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
     <lastBuildDate>Fri, 09 Aug 2019 16:25:35 +0800</lastBuildDate>
     
-	<atom:link href="https://ncjdjyh.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ncjdjyh.github.io/tags/daily/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -31,21 +31,6 @@ OAuth 2.0的运行流程如下图：
 然后当一个服务启动的时候将其注册到配置中心中，我的配置如下
 spring.application.name=gateway-service spring.cloud.nacos.config.file-extension=yaml spring.cloud.nacos.config.server-addr=localhost:8848 spring.cloud.nacos.config.group=DEFAULT_GROUP  网关(gateway-service) 网关使用Spring Cloud Gateway实现服务路由。使用lb://服务名配置路由表可以轻松实现基于Ribbion的负载均衡，更多配置可以参考这里，我的配置如下：
 spring: main: web-application-type: none application: name: gateway-service datasource: driver-class-name: com.mysql.jdbc.Driver url: jdbc:mysql://192.168.1.164:3306/oauth2?useUnicode=true&amp;amp;characterEncoding=UTF-8&amp;amp;zeroDateTimeBehavior=convertToNull&amp;amp;serverTimezone=GMT username: root password: root type: com.alibaba.druid.pool.DruidDataSource cloud: nacos: discovery: server-addr: 192.</description>
-    </item>
-    
-    <item>
-      <title>我的第一个编程语言</title>
-      <link>https://ncjdjyh.github.io/2018/10/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link>
-      <pubDate>Fri, 05 Oct 2018 16:43:01 +0800</pubDate>
-      
-      <guid>https://ncjdjyh.github.io/2018/10/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</guid>
-      <description>开篇 很久以前就想拥有一个自己的编程语言, 当看到计算机精确无误的将一行行代码翻译为正确的结果时, 我不禁感叹它的智慧, 但聪明的其实不是计算机, 计算机只是一个取值执行的部件, 是程序语言的设计者赋予了它这样的魔力, 能够根据我们的需要完成特定的事情, 这才是智慧的体现.
-实现一个解释器往往是程序语言设计的第一步, 而跨出了这一步往往会修正自己作为程序员的看法, 现在你将自己看成了语言的设计师, 而不仅仅是语言的使用者.
-YHScheme 虽然只是一个很简单的玩具语言, 但是也涵盖程序中最基本的构造(算数, 变量, 绑定, 调用, 递归)
- 可以看到 YHScheme 解释的主要作用只是将源码转化为了java编译器能够识别的java代码而已，后面的事情就交给 JVM 来完成了。
-表达式 和其他lisp方言一样, YHScheme 采用前缀表达式
-;这是常见的中缀表达式 (1 + 2 + 3) ;这是前缀表达式 (+ (+ 1 2) 3) ;这是后缀表达式 ((1 2 +) 3 +) 更多表达式的知识可以参考这里
-YHScheme 语法 ;算数 &amp;gt; &amp;gt; (+ 2 3 4) &amp;gt; &amp;gt; 9 &amp;gt; &amp;gt; (* 2 (+ 2 2)) &amp;gt; &amp;gt; 8 ;逻辑 &amp;gt; &amp;gt; (&amp;gt; 1 2) &amp;gt; &amp;gt; false &amp;gt; &amp;gt; (= 1 1) &amp;gt; &amp;gt; true ;高阶过程 &amp;gt; &amp;gt; (def (square x) (* x x)) &amp;gt; &amp;gt; ok &amp;gt; &amp;gt; (def (sum-of-square f x y) (+ (f x) (f y))) &amp;gt; &amp;gt; ok &amp;gt; &amp;gt; (sum-of-square square 2 3) &amp;gt; &amp;gt; 13 ;递归 &amp;gt; &amp;gt; (def (fact n) (if (= n 1) 1 (* n (f (- n 1))))) &amp;gt; &amp;gt; ok &amp;gt; &amp;gt; (fact 5) &amp;gt; &amp;gt; 120 ;匿名过程 &amp;gt; &amp;gt; (((lambda(x) (lambda(y) (+ x y)))2)3)  词法分析 词法分析是将字符序列转换为单词（Token）序列的过程, 前面说过 YHScheme 采用了前缀表达式, 那么采用像这样的前缀表达式有什么好处呢?</description>
     </item>
     
   </channel>

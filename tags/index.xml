@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>All rights reserved - 2019</copyright>
-    <lastBuildDate>Fri, 09 Aug 2019 16:25:35 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 31 Dec 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://ncjdjyh.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,18 +15,36 @@
     <item>
       <title>daily</title>
       <link>https://ncjdjyh.github.io/tags/daily/</link>
-      <pubDate>Fri, 09 Aug 2019 16:25:35 +0800</pubDate>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://ncjdjyh.github.io/tags/daily/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>series</title>
-      <link>https://ncjdjyh.github.io/tags/series/</link>
-      <pubDate>Fri, 05 Oct 2018 16:43:01 +0800</pubDate>
+      <title>arts</title>
+      <link>https://ncjdjyh.github.io/tags/arts/</link>
+      <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://ncjdjyh.github.io/tags/series/</guid>
+      <guid>https://ncjdjyh.github.io/tags/arts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tech</title>
+      <link>https://ncjdjyh.github.io/tags/tech/</link>
+      <pubDate>Fri, 09 Aug 2019 16:25:35 +0800</pubDate>
+      
+      <guid>https://ncjdjyh.github.io/tags/tech/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>me</title>
+      <link>https://ncjdjyh.github.io/tags/me/</link>
+      <pubDate>Mon, 05 Aug 2019 16:56:57 +0800</pubDate>
+      
+      <guid>https://ncjdjyh.github.io/tags/me/</guid>
       <description></description>
     </item>
     

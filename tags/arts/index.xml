@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>arts on 元昊的博客</title>
+    <link>https://ncjdjyh.github.io/tags/arts/</link>
+    <description>Recent content in arts on 元昊的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>All rights reserved - 2019</copyright>
+    <lastBuildDate>Sun, 25 Oct 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://ncjdjyh.github.io/tags/arts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ARTS WEEK 5</title>
+      <link>https://ncjdjyh.github.io/2020/10/25/arts-week-5/</link>
+      <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://ncjdjyh.github.io/2020/10/25/arts-week-5/</guid>
+      <description>Algorithm LeetCode 146 LRU缓存 https://leetcode-cn.com/problems/lru-cache/
+Review Database Sharding
+https://medium.com/system-design-blog/database-sharding-69f3f4bd96db
+Tips 三元表达式 autoboxing 导致的 npe 问题
+问题代码大概长这样:
+public class AutoboxingNPE { public static void main(String[] args) { boolean b = false; Double d1 = 0d; Double d2 = null; Double d = b ? d1.doubleValue() : d2; } }  乍一看似乎这段代码没有什么问题, 但运行后会发生诡异的 NPE 异常, 原因是三目运算符左右表达式在类型对齐时, 产生了自动拆箱的操作. 使用 JclassLab 反编译后结果如下
+
+从以上结果我们可以猜测三元表达式的行为: 三目运算符只要后面两个是不同的类型，涉及到类型转换，那么编译器就会向下（基本类型）进行转型，再进行计算. AutoboxingNPE字节码在24行发生了拆箱操作, 即等价于执行了 double b = null 造成 NPE</description>
+    </item>
+    
+    <item>
+      <title>ARTS WEEK 4</title>
+      <link>https://ncjdjyh.github.io/2020/10/11/arts-week-4/</link>
+      <pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://ncjdjyh.github.io/2020/10/11/arts-week-4/</guid>
+      <description>Algorithm LeetCode 142 环形链表II https://leetcode-cn.com/problems/linked-list-cycle-ii/
+Review Database Sharding
+https://medium.com/system-design-blog/database-sharding-69f3f4bd96db
+ 数据库分片优势
+ 高可用性 更快的查询效率 提高写带宽 便于拓展  数据库分片缺点
+ 增加系统复杂度 增加平衡数据的格外开销 从各个 shard 中取出数据再进行合并 额外的数据合并开销 缺少数据库原生支持  数据库分片方式
+ Key Based Sharding Range Based Sharding Directory Based Sharding   一致性 hash 算法可以解决 Key Based Sharding 的服务扩缩容问题 也是目前使用比较多的
+Tips 记一次线程池使用不当导致的内存泄露
+最近发生了一次线上问题(我的锅dog) ExecutorService 的错误使用, 是比较常见的线程问题 这里简单介绍下, 隐藏相关业务细节代码逻辑大概是这样  这里有两个比较严重的错误 首先, 在方法里创建新的线程池通常是不合适的, 使用线程池的原因是为了线程可以服用, 这样不能达到目的 其次, 线程池使用完了以后没有 shutdown 多次调用方法后大量的线程创建导致内存泄露.
+使用 jstack dump 堆栈信息后发现产生100个线程</description>
+    </item>
+    
+    <item>
+      <title>ARTS WEEK 3</title>
+      <link>https://ncjdjyh.github.io/2020/09/20/arts-week-3/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://ncjdjyh.github.io/2020/09/20/arts-week-3/</guid>
+      <description>Algorithm LeetCode 236 236. 二叉树的最近公共祖先
+Review Database Sharding
+https://medium.com/system-design-blog/database-sharding-69f3f4bd96db
+ 数据库分片优势
+ 高可用性 更快的查询效率 提高写带宽 便于拓展  数据库分片缺点
+ 增加系统复杂度 增加平衡数据的格外开销 从各个 shard 中取出数据再进行合并 额外的数据合并开销 缺少数据库原生支持  数据库分片方式
+ Key Based Sharding Range Based Sharding Directory Based Sharding   一致性 hash 算法可以解决 Key Based Sharding 的服务扩缩容问题 也是目前使用比较多的
+Tips CAS实现同步流水号生成
+Share Domain-Driven Design: Everything You Always Wanted to Know About it, But Were Afraid to Ask
+https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted-to-know-about-it-but-were-afraid-to-ask-a85e7b74497a</description>
+    </item>
+    
+    <item>
+      <title>ARTS WEEK 2</title>
+      <link>https://ncjdjyh.github.io/2020/09/13/arts-week-2/</link>
+      <pubDate>Sun, 13 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://ncjdjyh.github.io/2020/09/13/arts-week-2/</guid>
+      <description>Algorithm LeetCode 238 除自身以外数组的乘积
+Review 7 Skills of Highly Effective Programmers
+https://medium.com/better-programming/7-habits-of-highly-effective-programmers-563ee3b63f33
+ 学会阅读别人的代码 不要害怕阅读烂代码 读多了不好的代码你会知道怎样的代码是可读性高的可维护性好的 对不好的系统有知觉 管理会议避免无意义的开会文中提到两个方法(1)每天留出时间开会 (2)比其他人早到 感觉这两个方法没有什么用 学会使用 git 不要过度优化 学会拒绝 给工作排优先级 为未来考虑 (1)在设计一个复杂模块时先设想一下未来用户会如何错误的使用你的系统 (2)实现一个方法之前考虑一下方法的可复用性 未来可能会有许多别的程序员使用你的方法  Tips Spring Boot 继承 WebService
+Share The S.O.L.I.D Principles in Pictures 介绍设计模式原则
+https://medium.com/backticks-tildes/the-s-o-l-i-d-principles-in-pictures-b34ce2f1e898</description>
+    </item>
+    
+    <item>
+      <title>ARTS WEEK 1</title>
+      <link>https://ncjdjyh.github.io/2020/09/07/arts-week-1/</link>
+      <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://ncjdjyh.github.io/2020/09/07/arts-week-1/</guid>
+      <description>Algorithm LeetCode 59 螺旋矩阵 II
+Review Machine Learning Is Fun! (https://medium.com/@ageitgey/machine-learning-is-fun-80ea3ec3c471)
+一. 概述 机器学习思想是给定一个通用算法模型, 对于同类问题不需要编写特定的代码只需要提供数据, 它就会根据数据构建逻辑得到结果 比如常见的分类算法可以用它区分手写体数字, 也可以用它区分一封邮件是否是垃圾邮件, 也可以区分一个生物是狗还是猫
+二: 分类 监督学习(supervised learning) 你知道怎样做 你告诉计算机应该怎样做 非监督学习(unsupervised learning) 你也不知道怎样做 你让计算机学着自己去做
+三: 目前发展现状 强人工智能想要实现的目标是复制人类对任意问题的学习与处理能力 目前的机器学习其实并不能真正的学习 只能解决特定的问题
+四: 线性回归思路与步骤 这里是以监督学习举例的, 首先你需要有一些样本, 样本包含了最终结果与影响结果的各个因子的关系, 首先将各个因子的权重都设置为1通过计算得到一个估值比较估值与样本真实值的差距并不断调整估值, 直到估值与真实值的差距缩小到一定范围内, 即找到了所需权重.
+Tips  使用 Redis zset 实现异步查询任务 需求背景: 估价查询接口 每次查询为一个查询任务需要预计 30 分钟才能返回估价结果 实现方法 zset(value: 任务id score: 时间戳) 每 30 分钟启动一个定时任务, 查询已完成的任务 zrange(key, currentTimestmp - 1hour, currentTimestmp - 30min)  Share MDN CORS 原理</description>
+    </item>
+    
+  </channel>
+</rss>

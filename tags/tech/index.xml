@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tech on 元昊的博客</title>
+    <link>https://ncjdjyh.github.io/tags/tech/</link>
+    <description>Recent content in tech on 元昊的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>All rights reserved - 2019</copyright>
+    <lastBuildDate>Fri, 09 Aug 2019 16:25:35 +0800</lastBuildDate>
+    
+	<atom:link href="https://ncjdjyh.github.io/tags/tech/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>基于Spring Cloud Alibaba OAuth2的简易RBAC管理系统</title>
+      <link>https://ncjdjyh.github.io/2019/08/09/%E5%9F%BA%E4%BA%8Espring-cloud-alibaba-oauth2%E7%9A%84%E7%AE%80%E6%98%93rbac%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Fri, 09 Aug 2019 16:25:35 +0800</pubDate>
+      
+      <guid>https://ncjdjyh.github.io/2019/08/09/%E5%9F%BA%E4%BA%8Espring-cloud-alibaba-oauth2%E7%9A%84%E7%AE%80%E6%98%93rbac%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/</guid>
+      <description>背景 这篇文章主要用来记录笔本人学习和搭建该系统的问题和收获。阅读这篇文章需要对OAuth2协议和Spring Security有一定的了解。关于OAuth2，其实是一个鉴权与授权的规范（如果你还不清楚授权服务器，资源服务器，认证授权等基础概念，可以移步理解OAuth 2.0 - 阮一峰）这里我简单列举一个场景说明授权码模式(authorization code)的使用。比如现在我想使用QQ登录bilibili。
+
+
+OAuth 2.0的运行流程如下图：
+
+ Client: 第三方应用程序，在这里其实就是bilibili User Agent：这里指我的Chrome浏览器 Resource Owner：资源所有者，这里指的是我自己 Authorization server：认证服务器，这里指QQ的认证服务器 Resource Server：资源服务器，即服务提供商存放用户生成的资源的服务器。  在这个例子中：腾讯当然不希望你在登录B站的过程中暴露了QQ的账号和密码，OAuth就是为了解决这样的问题而出现的，它设置了一个授权层，客户端不能直接登录服务提供者，只能登录授权层，通过获取授权码(即图中的AccessToken)的方式来访问资源服务器的资源。
+有很多安全框架(Shiro Spring Security)都可以实现OAuth2规范，本文使用Spring Security对它进行实现。
+架构图 客户端的请求是通过网关(Gateway Service)以http协议来传输信息，网关调用一个统一的授权服务器(Auth Service)验证用户信息并返回一个用来访问资源的授权码(AccessToken)，在鉴权服务的搭建上采用了OAuth2认证的密码授权模式而没有使用OAuth中最为严密的授权码模式，原因除了简单以外还因为这是一个只存在内部调用的内部系统。在该系统中除了网关服务和授权服务，其他的所有服务都可以看成是资源服务(Resource Server)，他们都受到Spring Security的保护且通过授权码来访问资源，服务间使用Fegin来相互调用Fegin使用http访问其他内部服务,除了http通信方式外，在分布式系统中各个服务间也经常使用RPC通信方式,阿里的Dubbo和Google的gRPC都是这样的网络通信框架。笔者基于Netty实现了一个很简单的RPC工具：源码。
+服务配置中心 Spring Cloud Alibaba使用nacos作为配置中心，所以首先需要搭建配置中心服务器，具体的方法可以参考官方
+文档这是成功后的效果。
+然后当一个服务启动的时候将其注册到配置中心中，我的配置如下
+spring.application.name=gateway-service spring.cloud.nacos.config.file-extension=yaml spring.cloud.nacos.config.server-addr=localhost:8848 spring.cloud.nacos.config.group=DEFAULT_GROUP  网关(gateway-service) 网关使用Spring Cloud Gateway实现服务路由。使用lb://服务名配置路由表可以轻松实现基于Ribbion的负载均衡，更多配置可以参考这里，我的配置如下：
+spring: main: web-application-type: none application: name: gateway-service datasource: driver-class-name: com.mysql.jdbc.Driver url: jdbc:mysql://192.168.1.164:3306/oauth2?useUnicode=true&amp;amp;characterEncoding=UTF-8&amp;amp;zeroDateTimeBehavior=convertToNull&amp;amp;serverTimezone=GMT username: root password: root type: com.alibaba.druid.pool.DruidDataSource cloud: nacos: discovery: server-addr: 192.</description>
+    </item>
+    
+    <item>
+      <title>我的第一个编程语言</title>
+      <link>https://ncjdjyh.github.io/2018/10/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link>
+      <pubDate>Fri, 05 Oct 2018 16:43:01 +0800</pubDate>
+      
+      <guid>https://ncjdjyh.github.io/2018/10/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</guid>
+      <description>开篇 很久以前就想拥有一个自己的编程语言, 当看到计算机精确无误的将一行行代码翻译为正确的结果时, 我不禁感叹它的智慧, 但聪明的其实不是计算机, 计算机只是一个取值执行的部件, 是程序语言的设计者赋予了它这样的魔力, 能够根据我们的需要完成特定的事情, 这才是智慧的体现.
+实现一个解释器往往是程序语言设计的第一步, 而跨出了这一步往往会修正自己作为程序员的看法, 现在你将自己看成了语言的设计师, 而不仅仅是语言的使用者.
+YHScheme 虽然只是一个很简单的玩具语言, 但是也涵盖程序中最基本的构造(算数, 变量, 绑定, 调用, 递归)
+ 可以看到 YHScheme 解释的主要作用只是将源码转化为了java编译器能够识别的java代码而已，后面的事情就交给 JVM 来完成了。
+表达式 和其他lisp方言一样, YHScheme 采用前缀表达式
+;这是常见的中缀表达式 (1 + 2 + 3) ;这是前缀表达式 (+ (+ 1 2) 3) ;这是后缀表达式 ((1 2 +) 3 +) 更多表达式的知识可以参考这里
+YHScheme 语法 ;算数 &amp;gt; &amp;gt; (+ 2 3 4) &amp;gt; &amp;gt; 9 &amp;gt; &amp;gt; (* 2 (+ 2 2)) &amp;gt; &amp;gt; 8 ;逻辑 &amp;gt; &amp;gt; (&amp;gt; 1 2) &amp;gt; &amp;gt; false &amp;gt; &amp;gt; (= 1 1) &amp;gt; &amp;gt; true ;高阶过程 &amp;gt; &amp;gt; (def (square x) (* x x)) &amp;gt; &amp;gt; ok &amp;gt; &amp;gt; (def (sum-of-square f x y) (+ (f x) (f y))) &amp;gt; &amp;gt; ok &amp;gt; &amp;gt; (sum-of-square square 2 3) &amp;gt; &amp;gt; 13 ;递归 &amp;gt; &amp;gt; (def (fact n) (if (= n 1) 1 (* n (f (- n 1))))) &amp;gt; &amp;gt; ok &amp;gt; &amp;gt; (fact 5) &amp;gt; &amp;gt; 120 ;匿名过程 &amp;gt; &amp;gt; (((lambda(x) (lambda(y) (+ x y)))2)3)  词法分析 词法分析是将字符序列转换为单词（Token）序列的过程, 前面说过 YHScheme 采用了前缀表达式, 那么采用像这样的前缀表达式有什么好处呢?</description>
+    </item>
+    
+  </channel>
+</rss>

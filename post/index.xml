@@ -175,8 +175,8 @@ YHScheme 语法 ;算数 &amp;gt; &amp;gt; (+ 2 3 4) &amp;gt; &amp;gt; 9 &amp;gt;
       <pubDate>Thu, 30 Dec 2010 00:00:00 +0000</pubDate>
       
       <guid>https://ncjdjyh.github.io/2010/12/30/leetcode-15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</guid>
-      <description>排序 + 双指针 假设数组 *num*，长度为 n
-基本思路是首先对数组进行排序，我们遍历该数组(即循环n次)，在每次循环中，将本次循环数组中值(num[curr])作为三数中的第一个数，接着定义两个指针left、right分别指向*num[curr+1]*、*num[n-1]*。由于数组是有序的，根据三数相加以后的结果 res 与 0 之间的大小关系有
+      <description>排序 + 双指针 假设数组 num，长度为 n
+基本思路是首先对数组进行排序，我们遍历该数组(即循环n次)，在每次循环中，将本次循环数组中值(num[curr])作为三数中的第一个数，接着定义两个指针left、right分别指向*num[curr+1]*、*num[n-1]*。由于数组是有序的，根据三数相加以后的结果 res 与 0之间的大小关系有
  res &amp;gt; 0  right指针向右移动
  res &amp;lt; 0  left指针向左移动
  res = 0 (满足条件)  right指针向右移动

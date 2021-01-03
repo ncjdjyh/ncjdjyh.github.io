@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ARTS WEEK 3 - 元昊的博客</title>
+  <title>LeetCode-15 三数之和 - 元昊的博客</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,16 +23,15 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 
-  <meta name="description" content="Algorithm LeetCode 236 236. 二叉树的最近公共祖先
-Review Database Sharding
-https://medium.com/system-design-blog/database-sharding-69f3f4bd96db
- 数据库分片优势
- 高可用性 更快的查询效率 提高写带宽 便于拓展  数据库分片缺点
- 增加系统复杂度 增加平衡数据的格外开销 从各个 shard 中取出数据再进行合并 额外的数据合并开销 缺少数据库原生支持  数据库分片方式
- Key Based Sharding Range Based Sharding Directory Based Sharding   一致性 hash 算法可以解决 Key Based Sharding 的服务扩缩容问题 也是目前使用比较多的
-Tips CAS实现同步流水号生成
-Share Domain-Driven Design: Everything You Always Wanted to Know About it, But Were Afraid to Ask
-https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted-to-know-about-it-but-were-afraid-to-ask-a85e7b74497a" />
+  <meta name="description" content="排序 &#43; 双指针 假设数组 *num*，长度为 n
+基本思路是首先对数组进行排序，我们遍历该数组(即循环n次)，在每次循环中，将本次循环数组中值(num[curr])作为三数中的第一个数，接着定义两个指针left、right分别指向*num[curr&#43;1]*、*num[n-1]*。由于数组是有序的，根据三数相加以后的结果 res 与 0 之间的大小关系有
+ res &amp;gt; 0  right指针向右移动
+ res &amp;lt; 0  left指针向左移动
+ res = 0 (满足条件)  right指针向右移动
+left指针向左移动
+重复这一过程，当left &amp;gt;= right时，我们就能找出在本次循环中，以*num[curr]*为首个元素的，符合条件的所有三数之和，继续新一轮的数组遍历直到结束，就能找出所有符合要求的数据。
+需要注意的是，题中要求结果不允许重复，所以我们需要用某种方式过滤重复结果集，比较容易想到的方法是使用hash，例如在每次将结果添加进结果集之前给当前结果做一次hash，由此作为结果是否重复的标识。但这会带来多余的计算和额外的内存开销。
+一个更好的方法是，当找到一个满足三数之和等于零时(num[curr] &#43; num[left] &#43; num[right] = 0)，left、right指针分别向右、向左遍历寻找相同值并过滤。当数组进入新一轮遍历时，判断当前数组值 (num[curr]) 与上一轮循环的值 (num[curr-1]) 是否相同，相同则直接跳过该轮循环。" />
 
 
 
@@ -43,7 +42,7 @@ https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted
 <meta name="generator" content="Hugo 0.56.3" />
 
 
-<link rel="canonical" href="https://ncjdjyh.github.io/2020/09/20/arts-week-3/" />
+<link rel="canonical" href="https://ncjdjyh.github.io/2010/12/30/leetcode-15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" />
 
 
 
@@ -67,53 +66,50 @@ https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted
 
 
 
-<meta property="og:title" content="ARTS WEEK 3" />
-<meta property="og:description" content="Algorithm LeetCode 236 236. 二叉树的最近公共祖先
-Review Database Sharding
-https://medium.com/system-design-blog/database-sharding-69f3f4bd96db
- 数据库分片优势
- 高可用性 更快的查询效率 提高写带宽 便于拓展  数据库分片缺点
- 增加系统复杂度 增加平衡数据的格外开销 从各个 shard 中取出数据再进行合并 额外的数据合并开销 缺少数据库原生支持  数据库分片方式
- Key Based Sharding Range Based Sharding Directory Based Sharding   一致性 hash 算法可以解决 Key Based Sharding 的服务扩缩容问题 也是目前使用比较多的
-Tips CAS实现同步流水号生成
-Share Domain-Driven Design: Everything You Always Wanted to Know About it, But Were Afraid to Ask
-https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted-to-know-about-it-but-were-afraid-to-ask-a85e7b74497a" />
+<meta property="og:title" content="LeetCode-15 三数之和" />
+<meta property="og:description" content="排序 &#43; 双指针 假设数组 *num*，长度为 n
+基本思路是首先对数组进行排序，我们遍历该数组(即循环n次)，在每次循环中，将本次循环数组中值(num[curr])作为三数中的第一个数，接着定义两个指针left、right分别指向*num[curr&#43;1]*、*num[n-1]*。由于数组是有序的，根据三数相加以后的结果 res 与 0 之间的大小关系有
+ res &gt; 0  right指针向右移动
+ res &lt; 0  left指针向左移动
+ res = 0 (满足条件)  right指针向右移动
+left指针向左移动
+重复这一过程，当left &gt;= right时，我们就能找出在本次循环中，以*num[curr]*为首个元素的，符合条件的所有三数之和，继续新一轮的数组遍历直到结束，就能找出所有符合要求的数据。
+需要注意的是，题中要求结果不允许重复，所以我们需要用某种方式过滤重复结果集，比较容易想到的方法是使用hash，例如在每次将结果添加进结果集之前给当前结果做一次hash，由此作为结果是否重复的标识。但这会带来多余的计算和额外的内存开销。
+一个更好的方法是，当找到一个满足三数之和等于零时(num[curr] &#43; num[left] &#43; num[right] = 0)，left、right指针分别向右、向左遍历寻找相同值并过滤。当数组进入新一轮遍历时，判断当前数组值 (num[curr]) 与上一轮循环的值 (num[curr-1]) 是否相同，相同则直接跳过该轮循环。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://ncjdjyh.github.io/2020/09/20/arts-week-3/" />
-<meta property="article:published_time" content="2020-09-20T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-09-20T00:00:00+00:00" />
-<meta itemprop="name" content="ARTS WEEK 3">
-<meta itemprop="description" content="Algorithm LeetCode 236 236. 二叉树的最近公共祖先
-Review Database Sharding
-https://medium.com/system-design-blog/database-sharding-69f3f4bd96db
- 数据库分片优势
- 高可用性 更快的查询效率 提高写带宽 便于拓展  数据库分片缺点
- 增加系统复杂度 增加平衡数据的格外开销 从各个 shard 中取出数据再进行合并 额外的数据合并开销 缺少数据库原生支持  数据库分片方式
- Key Based Sharding Range Based Sharding Directory Based Sharding   一致性 hash 算法可以解决 Key Based Sharding 的服务扩缩容问题 也是目前使用比较多的
-Tips CAS实现同步流水号生成
-Share Domain-Driven Design: Everything You Always Wanted to Know About it, But Were Afraid to Ask
-https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted-to-know-about-it-but-were-afraid-to-ask-a85e7b74497a">
+<meta property="og:url" content="https://ncjdjyh.github.io/2010/12/30/leetcode-15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/" />
+<meta property="article:published_time" content="2010-12-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2010-12-30T00:00:00+00:00" />
+<meta itemprop="name" content="LeetCode-15 三数之和">
+<meta itemprop="description" content="排序 &#43; 双指针 假设数组 *num*，长度为 n
+基本思路是首先对数组进行排序，我们遍历该数组(即循环n次)，在每次循环中，将本次循环数组中值(num[curr])作为三数中的第一个数，接着定义两个指针left、right分别指向*num[curr&#43;1]*、*num[n-1]*。由于数组是有序的，根据三数相加以后的结果 res 与 0 之间的大小关系有
+ res &gt; 0  right指针向右移动
+ res &lt; 0  left指针向左移动
+ res = 0 (满足条件)  right指针向右移动
+left指针向左移动
+重复这一过程，当left &gt;= right时，我们就能找出在本次循环中，以*num[curr]*为首个元素的，符合条件的所有三数之和，继续新一轮的数组遍历直到结束，就能找出所有符合要求的数据。
+需要注意的是，题中要求结果不允许重复，所以我们需要用某种方式过滤重复结果集，比较容易想到的方法是使用hash，例如在每次将结果添加进结果集之前给当前结果做一次hash，由此作为结果是否重复的标识。但这会带来多余的计算和额外的内存开销。
+一个更好的方法是，当找到一个满足三数之和等于零时(num[curr] &#43; num[left] &#43; num[right] = 0)，left、right指针分别向右、向左遍历寻找相同值并过滤。当数组进入新一轮遍历时，判断当前数组值 (num[curr]) 与上一轮循环的值 (num[curr-1]) 是否相同，相同则直接跳过该轮循环。">
 
 
-<meta itemprop="datePublished" content="2020-09-20T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-09-20T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="59">
+<meta itemprop="datePublished" content="2010-12-30T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2010-12-30T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="40">
 
 
 
-<meta itemprop="keywords" content="arts," />
+<meta itemprop="keywords" content="leetcode," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="ARTS WEEK 3"/>
-<meta name="twitter:description" content="Algorithm LeetCode 236 236. 二叉树的最近公共祖先
-Review Database Sharding
-https://medium.com/system-design-blog/database-sharding-69f3f4bd96db
- 数据库分片优势
- 高可用性 更快的查询效率 提高写带宽 便于拓展  数据库分片缺点
- 增加系统复杂度 增加平衡数据的格外开销 从各个 shard 中取出数据再进行合并 额外的数据合并开销 缺少数据库原生支持  数据库分片方式
- Key Based Sharding Range Based Sharding Directory Based Sharding   一致性 hash 算法可以解决 Key Based Sharding 的服务扩缩容问题 也是目前使用比较多的
-Tips CAS实现同步流水号生成
-Share Domain-Driven Design: Everything You Always Wanted to Know About it, But Were Afraid to Ask
-https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted-to-know-about-it-but-were-afraid-to-ask-a85e7b74497a"/>
+<meta name="twitter:title" content="LeetCode-15 三数之和"/>
+<meta name="twitter:description" content="排序 &#43; 双指针 假设数组 *num*，长度为 n
+基本思路是首先对数组进行排序，我们遍历该数组(即循环n次)，在每次循环中，将本次循环数组中值(num[curr])作为三数中的第一个数，接着定义两个指针left、right分别指向*num[curr&#43;1]*、*num[n-1]*。由于数组是有序的，根据三数相加以后的结果 res 与 0 之间的大小关系有
+ res &gt; 0  right指针向右移动
+ res &lt; 0  left指针向左移动
+ res = 0 (满足条件)  right指针向右移动
+left指针向左移动
+重复这一过程，当left &gt;= right时，我们就能找出在本次循环中，以*num[curr]*为首个元素的，符合条件的所有三数之和，继续新一轮的数组遍历直到结束，就能找出所有符合要求的数据。
+需要注意的是，题中要求结果不允许重复，所以我们需要用某种方式过滤重复结果集，比较容易想到的方法是使用hash，例如在每次将结果添加进结果集之前给当前结果做一次hash，由此作为结果是否重复的标识。但这会带来多余的计算和额外的内存开销。
+一个更好的方法是，当找到一个满足三数之和等于零时(num[curr] &#43; num[left] &#43; num[right] = 0)，left、right指针分别向右、向左遍历寻找相同值并过滤。当数组进入新一轮遍历时，判断当前数组值 (num[curr]) 与上一轮循环的值 (num[curr-1]) 是否相同，相同则直接跳过该轮循环。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -293,11 +289,11 @@ https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">ARTS WEEK 3</h1>
+      <h1 class="post-title">LeetCode-15 三数之和</h1>
       
       <div class="post-meta">
-        <time datetime="2020-09-20" class="post-time">
-          2020-09-20
+        <time datetime="2010-12-30" class="post-time">
+          2010-12-30
         </time>
         
         
@@ -317,55 +313,37 @@ https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted
     <div class="post-content">
       
 
-<h3 id="algorithm">Algorithm</h3>
+<h4 id="排序-双指针">排序 + 双指针</h4>
 
-<p>LeetCode 236 <a href="https://leetcode-cn.com/problems/product-of-array-except-self/"><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/">236. 二叉树的最近公共祖先</a></a></p>
+<p>假设数组 *num*，长度为 <em>n</em></p>
 
-<h3 id="review">Review</h3>
-
-<p>Database Sharding</p>
-
-<p><a href="https://medium.com/system-design-blog/database-sharding-69f3f4bd96db">https://medium.com/system-design-blog/database-sharding-69f3f4bd96db</a></p>
+<p>基本思路是首先对数组进行排序，我们遍历该数组(即循环n次)，在每次循环中，将本次循环数组中值(<em>num[curr]</em>)作为三数中的第一个数，接着定义两个指针left、right分别指向*num[curr+1]*、*num[n-1]*。由于数组是有序的，根据三数相加以后的结果 <em>res</em> 与 <em>0</em> 之间的大小关系有</p>
 
 <ul>
-<li><p>数据库分片优势</p>
-
-<ul>
-<li>高可用性</li>
-<li>更快的查询效率</li>
-<li>提高写带宽</li>
-<li>便于拓展</li>
-</ul></li>
-
-<li><p>数据库分片缺点</p>
-
-<ul>
-<li>增加系统复杂度</li>
-<li>增加平衡数据的格外开销</li>
-<li>从各个 shard 中取出数据再进行合并 额外的数据合并开销</li>
-<li>缺少数据库原生支持</li>
-</ul></li>
-
-<li><p>数据库分片方式</p>
-
-<ul>
-<li>Key Based Sharding</li>
-<li>Range Based Sharding</li>
-<li>Directory Based Sharding</li>
-</ul></li>
+<li>res &gt; 0</li>
 </ul>
 
-<p>一致性 hash 算法可以解决 Key Based Sharding 的服务扩缩容问题 也是目前使用比较多的</p>
+<p>right指针向右移动</p>
 
-<h3 id="tips">Tips</h3>
+<ul>
+<li>res &lt; 0</li>
+</ul>
 
-<p>CAS实现同步流水号生成</p>
+<p>left指针向左移动</p>
 
-<h3 id="share">Share</h3>
+<ul>
+<li>res = 0 (满足条件)</li>
+</ul>
 
-<p>Domain-Driven Design: Everything You Always Wanted to Know About it, But Were Afraid to Ask</p>
+<p>right指针向右移动</p>
 
-<p><a href="https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted-to-know-about-it-but-were-afraid-to-ask-a85e7b74497a">https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted-to-know-about-it-but-were-afraid-to-ask-a85e7b74497a</a></p>
+<p>left指针向左移动</p>
+
+<p>重复这一过程，当left &gt;= right时，我们就能找出在本次循环中，以*num[curr]*为首个元素的，符合条件的所有三数之和，继续新一轮的数组遍历直到结束，就能找出所有符合要求的数据。</p>
+
+<p>需要注意的是，题中要求结果不允许重复，所以我们需要用某种方式过滤重复结果集，比较容易想到的方法是使用hash，例如在每次将结果添加进结果集之前给当前结果做一次hash，由此作为结果是否重复的标识。但这会带来多余的计算和额外的内存开销。</p>
+
+<p>一个更好的方法是，当找到一个满足三数之和等于零时(<em>num[curr] + num[left] + num[right] = 0</em>)，left、right指针分别向右、向左遍历寻找相同值并过滤。当数组进入新一轮遍历时，判断当前数组值 (<em>num[curr]</em>) 与上一轮循环的值 (<em>num[curr-1]</em>) 是否相同，相同则直接跳过该轮循环。</p>
 
     </div>
 
@@ -378,14 +356,14 @@ https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://ncjdjyh.github.io/tags/arts/">arts</a>
+          <a href="https://ncjdjyh.github.io/tags/leetcode/">leetcode</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="https://ncjdjyh.github.io/2020/10/11/arts-week-4/">
+          <a class="prev" href="https://ncjdjyh.github.io/2018/10/05/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -395,12 +373,12 @@ https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted
 </svg>
 
             </i>
-            <span class="prev-text nav-default">ARTS WEEK 4</span>
+            <span class="prev-text nav-default">我的第一个编程语言</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         
-          <a class="next" href="https://ncjdjyh.github.io/2020/09/13/arts-week-2/">
-            <span class="next-text nav-default">ARTS WEEK 2</span>
+          <a class="next" href="https://ncjdjyh.github.io/2010/12/30/%E7%9F%A5%E8%AF%86%E8%BE%93%E5%87%BA%E7%9A%84%E6%96%B9%E5%BC%8F/">
+            <span class="next-text nav-default">知识输出的方式</span>
             <span class="prev-text nav-mobile">Next</span>
             
             <i class="iconfont">
@@ -438,7 +416,7 @@ https://medium.com/ssense-tech/domain-driven-design-everything-you-always-wanted
   <div id="disqus_thread"></div>
   <script type="text/javascript">
     var disqus_config = function () {
-      this.page.url = "https://ncjdjyh.github.io/2020/09/20/arts-week-3/";
+      this.page.url = "https://ncjdjyh.github.io/2010/12/30/leetcode-15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/";
     };
     function load_disqus() {
       

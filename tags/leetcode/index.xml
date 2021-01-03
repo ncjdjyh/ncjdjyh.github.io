@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>leetcode on 元昊的博客</title>
+    <link>https://ncjdjyh.github.io/tags/leetcode/</link>
+    <description>Recent content in leetcode on 元昊的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>All rights reserved - 2019</copyright>
+    <lastBuildDate>Thu, 30 Dec 2010 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://ncjdjyh.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LeetCode-15 三数之和</title>
+      <link>https://ncjdjyh.github.io/2010/12/30/leetcode-15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</link>
+      <pubDate>Thu, 30 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://ncjdjyh.github.io/2010/12/30/leetcode-15-%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</guid>
+      <description>排序 + 双指针 假设数组 *num*，长度为 n
+基本思路是首先对数组进行排序，我们遍历该数组(即循环n次)，在每次循环中，将本次循环数组中值(num[curr])作为三数中的第一个数，接着定义两个指针left、right分别指向*num[curr+1]*、*num[n-1]*。由于数组是有序的，根据三数相加以后的结果 res 与 0 之间的大小关系有
+ res &amp;gt; 0  right指针向右移动
+ res &amp;lt; 0  left指针向左移动
+ res = 0 (满足条件)  right指针向右移动
+left指针向左移动
+重复这一过程，当left &amp;gt;= right时，我们就能找出在本次循环中，以*num[curr]*为首个元素的，符合条件的所有三数之和，继续新一轮的数组遍历直到结束，就能找出所有符合要求的数据。
+需要注意的是，题中要求结果不允许重复，所以我们需要用某种方式过滤重复结果集，比较容易想到的方法是使用hash，例如在每次将结果添加进结果集之前给当前结果做一次hash，由此作为结果是否重复的标识。但这会带来多余的计算和额外的内存开销。
+一个更好的方法是，当找到一个满足三数之和等于零时(num[curr] + num[left] + num[right] = 0)，left、right指针分别向右、向左遍历寻找相同值并过滤。当数组进入新一轮遍历时，判断当前数组值 (num[curr]) 与上一轮循环的值 (num[curr-1]) 是否相同，相同则直接跳过该轮循环。</description>
+    </item>
+    
+  </channel>
+</rss>
